@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "hello.hpp"
+#include "parser.hpp"
 
-int main(void)
+int main()
 {
-	Hello();
+	parse();
 	return EXIT_SUCCESS;
 }
