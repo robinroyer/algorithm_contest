@@ -5,7 +5,7 @@ CC_FLAGS = -w
 # File names
 EXEC = run
 SRCDIR = ./src/
-SOURCES = $(wildcard *.cpp)
+SOURCES = $(wildcard ./src/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 
 # Main target

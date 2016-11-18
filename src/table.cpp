@@ -1,5 +1,5 @@
 #include <iostream>
-#include "table.h"
+#include "table.hpp"
 
 // Member functions definitions including constructor
 Table::Table(void) {

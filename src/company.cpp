@@ -1,5 +1,5 @@
 #include <iostream>
-#include "company.h"
+#include "company.hpp"
 
 // Member functions definitions including constructor
 Company::Company() {
