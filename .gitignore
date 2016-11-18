@@ -1,2 +1,4 @@
 data/*
 gen.sh
+*.o
+run
