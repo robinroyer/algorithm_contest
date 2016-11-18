@@ -4,6 +4,8 @@
 #include "parser.hpp"
 
 void parse(){
+	std::cout << "hello from parser 1 " << std::endl;
+	
 	// int counter = 0;
 	// string myString;
 	//
