@@ -5,17 +5,22 @@
 #include <fstream>
 #include "parser.hpp"
 #include "company.hpp"
+#include <map>
 
 void parse(std::string name){
 	std::cout << "hello from parser 1 : " << name << std::endl;
 	
-	int counter = 0;
+	int counter = 1;
 
-	int rivalNumber;
-	int friendNumber;
-	int forbiddenNumber;
+	int forbiddenCounter = 1;
+	int friendCounter = 1;
+	int rivalCounter = 1;
 
 	Company* tmp;
+	Company* tmp2;
+
+	int id;
+	int id2;
 
 	// init reading
 	std::ifstream file(name);
@@ -29,22 +34,66 @@ void parse(std::string name){
 	// get the number of company
 	std::getline(file, str);
 	int companyNumber = std::stoi( str );
+	std::map<int, Company*> companies;
 	
-    std::cout << "il y a :" << companyNumber << "companies" << std::endl;
+    std::cout << "il y a :" << companyNumber << " companies" << std::endl;
 
-	std::vector<Company*> companies (companyNumber);
 
-    while (std::getline(file, str))
+    while (counter <= companyNumber)
     {
-        // std::cout << str << std::endl;
-        if (companyNumber >= 0)
-        {
-        	tmp = new Company(counter, std::stoi( str ));
+    	std::getline(file, str);
 
-        	companies.push_back(tmp);
-        	counter++;
-        	companyNumber--;
-        }
+    	tmp = new Company(counter, std::stoi( str ));
+
+    	companies[counter] = tmp;
+    	counter++;
+    }
+
+    //get number of forbidden
+    std::getline(file, str);
+	int forbiddenNumber = std::stoi( str );
+
+	while (forbiddenCounter <= forbiddenNumber)
+    {
+    	std::getline(file, str);
+
+    	id = std::stoi(str.substr(0, str.find(" ")));
+    	id2 = std::stoi(str.substr(str.find(" "), str.size()));
+
+    	std::cout << id << " hates  " << id2 << std::endl;
+
+    	forbiddenCounter++;
+    }
+
+    //get number of friend
+    std::getline(file, str);
+	int friendNumber = std::stoi( str );
+
+	while (friendCounter <= friendNumber)
+    {
+    	std::getline(file, str);
+
+    	id = std::stoi(str.substr(0, str.find(" ")));
+    	id2 = std::stoi(str.substr(str.find(" "), str.size()));
+
+    	std::cout << id << " loves  " << id2 << std::endl;
+
+    	friendCounter++;
+    }
+
+ //    //get number of rival
+    std::getline(file, str);
+	int rivalNumber = std::stoi( str );
+
+	while (rivalCounter <= rivalNumber)
+    {
+    	std::getline(file, str);
+
+    	id = std::stoi(str.substr(0, str.find(" ")));
+    	id2 = std::stoi(str.substr(str.find(" "), str.size()));
+
+    	std::cout << id << " doesn't like  " << id2 << std::endl;
+    	rivalCounter++;
     }
 
 }
