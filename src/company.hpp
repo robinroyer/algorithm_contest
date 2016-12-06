@@ -11,6 +11,9 @@ public:
 
 	void setFriends(const std::vector<Company*> friends);
 	void setRivals(const std::vector<Company*> rivals);
+	void addRival(int);
+	void addFriend(int);
+	void addForbidden(int);
 	void setForbidden(const std::vector<Company*> forbiddenCompanies);
 	//methode d'accès et de modification des attributs
 	unsigned int getId() const;

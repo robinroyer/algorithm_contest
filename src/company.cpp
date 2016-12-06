@@ -51,6 +51,18 @@ void Company::setRivals(const std::vector<Company*> rivals) {
 	rivals_ = rivals;
 }
 
+void Company::addRival(int id) {
+	//TODO
+}
+
+void Company::addFriend(int id) {
+	//TODO
+}
+
+void Company::addForbidden(int id) {
+	//TODO
+}
+
 void Company::setForbidden(const std::vector<Company*> forbiddenCompanies) {
 	forbidden_ = forbiddenCompanies;
 }

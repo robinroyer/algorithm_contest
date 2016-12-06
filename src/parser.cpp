@@ -7,7 +7,7 @@
 #include "company.hpp"
 #include <map>
 
-void parse(std::string name){
+std::map<int, Company*> parse(std::string name){
 	std::cout << "hello from parser 1 : " << name << std::endl;
 	
 	int counter = 1;
@@ -61,6 +61,7 @@ void parse(std::string name){
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " hates  " << id2 << std::endl;
+    	companies[id]->addRival(id2);// not implemented yet
 
     	forbiddenCounter++;
     }
@@ -77,11 +78,13 @@ void parse(std::string name){
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " loves  " << id2 << std::endl;
+    	companies[id]->addFriend(id2);// not implemented yet
+
 
     	friendCounter++;
     }
 
- //    //get number of rival
+    //get number of rival
     std::getline(file, str);
 	int rivalNumber = std::stoi( str );
 
@@ -93,7 +96,9 @@ void parse(std::string name){
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " doesn't like  " << id2 << std::endl;
+    	companies[id]->addForbidden(id2);// not implemented yet
+
     	rivalCounter++;
     }
-
+    return companies;
 }
