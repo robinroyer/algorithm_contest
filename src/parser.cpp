@@ -1,50 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <string>
+#include <fstream>
 #include "parser.hpp"
+#include "company.hpp"
 
-void parse(){
-	std::cout << "hello from parser 1 " << std::endl;
+void parse(std::string name){
+	std::cout << "hello from parser 1 : " << name << std::endl;
 	
-	// int counter = 0;
-	// string myString;
-	//
-	//
-	// while(!myFile.eof())
-	// {
-	//     getline(myFile, myString);
-	//     counter++;
-	// }
-	// counter --;
-	//
-	// //Clear the error state flag
-	// myFile.clear()
-	//
-	// //Return to the beginning of the file:
-	// myFile.seekg(ios_base::beg);
-	//
-	//
-	// const int fieldCount = 5;
-	// string field[fieldCount ];
-	//
-	//
-	// string buffer= "";
-	// char c = '\0';
-	// for( int i = 0; i < counter; ++i ) {
-	//     for( int j = 0; j < fieldCount; ++j ) {
-	//         myFile.ignore(); //Ignore the first '"'
-	//         //Read each character up to the second '"'
-	//         while( myFile.good() && (c = myfile.get()) != '"' ) {
-	//             buffer += c;
-	//         }
-	//         field[j] = buffer;
-	//         buffer = "";
-	//         if( j != fieldCount - 1 ) {
-	//             myFile.ignore(); //Ignore the first ','
-	//         }
-	//     }
-	//
-	//     //Use the fields here.
-	//
-	// }
+	int counter = 0;
+
+	int rivalNumber;
+	int friendNumber;
+	int forbiddenNumber;
+
+	Company* tmp;
+
+	// init reading
+	std::ifstream file(name);
+    std::string str; 
+
+	// get the number of table
+	std::getline(file, str);
+	int tableNumber = std::stoi( str );
+
+
+	// get the number of company
+	std::getline(file, str);
+	int companyNumber = std::stoi( str );
+	
+    std::cout << "il y a :" << companyNumber << "companies" << std::endl;
+
+	std::vector<Company*> companies (companyNumber);
+
+    while (std::getline(file, str))
+    {
+        // std::cout << str << std::endl;
+        if (companyNumber >= 0)
+        {
+        	tmp = new Company(counter, std::stoi( str ));
+
+        	companies.push_back(tmp);
+        	counter++;
+        	companyNumber--;
+        }
+    }
+
 }

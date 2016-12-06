@@ -9,7 +9,7 @@ key="$1"
 
 case $key in
     -e|--ex_path)
-    EX_PATH="$1"
+    EX_PATH="$2"
     shift
     ;;
     *)

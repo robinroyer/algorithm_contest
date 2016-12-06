@@ -2,7 +2,7 @@
 #include "table.hpp"
 
 // Member functions definitions including constructor
-Table::Table(void) : poids_(0) {
+Table::Table(void) : weight_(0) {
    std::cout << "Object is being created" << std::endl;
 }
 

@@ -3,10 +3,12 @@
 
 #include "company.hpp"
 #include <vector>
+
 class Table {
 public:
 	Table();   // This is the constructor declaration
 	~Table();  // This is the destructor: declaration
+
 	void printTable();
 	void addCompany(const Company* company);
 	void removeCompany(const Company* company);
@@ -16,8 +18,9 @@ public:
 	// only applies to weight for friends and rivals, can't compute the standard deviation
 	// because that's a local var
 	void computeWeight();
+
 private:
-	std::vector(Company*) companies_;
+	std::vector<Company*> companies_;
 	int weight_;
 	int size_;
 };

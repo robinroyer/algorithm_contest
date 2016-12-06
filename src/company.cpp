@@ -3,7 +3,7 @@
 
 // Member functions definitions including constructor
 Company::Company(unsigned int id, unsigned int size) : id_(id),size_(size) {
-	std::cout << "Object is being created" << std::endl;
+	std::cout << "company: " << id << " a " << size << " personnes"<< std::endl;
 }
 
 Company::~Company() {
@@ -31,7 +31,7 @@ unsigned int Company::getId() const {
 	return id_;
 }
 
-unsigned int Company::getsize() const {
+unsigned int Company::getSize() const {
 	return size_;
 }
 
@@ -49,10 +49,6 @@ std::vector<Company*> Company::getRivals() const {
 
 void Company::setRivals(const std::vector<Company*> rivals) {
 	rivals_ = rivals;
-}
-
-std::vector<Company*> Company::getRivals() const {
-	return rivals_;
 }
 
 void Company::setForbidden(const std::vector<Company*> forbiddenCompanies) {
