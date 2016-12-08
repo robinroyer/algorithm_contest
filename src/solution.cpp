@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "solution.hpp"
 
 // Member functions definitions including constructor
@@ -38,4 +39,20 @@ void Solution::initSol(std::vector<Company*> companies) {
 			}
 		}
 	}
+}
+
+int Solution::computeCostFunction() {
+	float cost = 0.0;
+	float sum = 0.0;
+	float standardDeviation = 0.0;
+	for (int i = 0; i < tables_.size(); i++) {
+		cost += tables_[i].getWeight();
+		sum += tables_[i].getCompanies().size();
+	}
+
+	float mean = sum / tables_.size();
+	for (int j = 0; j < tables.size(); j++) {
+		standardDeviation+= pow(tables_[j] - mean, 2);
+	}
+	return sqrt(standardDeviation / tables_.size());
 }

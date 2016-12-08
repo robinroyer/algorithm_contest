@@ -12,7 +12,7 @@ public:
 	void setTables(std::vector<Table> tables);
 	void initSol(std::vector<Company*> companies);
 
-	
+	int computeCostFunction();
 
 private:
 	std::vector<Table> tables_;
