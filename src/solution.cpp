@@ -21,3 +21,20 @@ void Solution::printSolution() {
 		}
 	std::cout << "fin";
 	}
+
+void Solution::setTables(std::vector<Table> tables) {
+	tables_ = tables;
+}
+
+void Solution::initSol(std::vector<Company*> companies) {
+	for (int j = 0; j < companies.size(); j++) {
+		k = 0
+			while (!tables_[k].addCompany(companies[j])) {
+				k++;
+				if (k > tables_.size()) {
+					std::cout << " OH SA MERE";
+				}
+			}
+	}
+
+}
