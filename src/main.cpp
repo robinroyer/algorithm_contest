@@ -38,7 +38,8 @@ int main(int argc, char* argv[])
 	std::sort(vectCompanies.begin(), vectCompanies.end(), FoncteurCompareSizeOfEnnemies());
 	Solution initSol;
 	initSol.setTables(tables);
-	initS
+	initSol.initSol();
+	initSol.printSolution();
 
 
 	}
