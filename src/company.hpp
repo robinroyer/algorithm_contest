@@ -13,8 +13,8 @@ public:
 	void addFriend(int);
 	void addForbidden(int);
 	//methode d'accès et de modification des attributs
-	unsigned int getId() const;
-	unsigned int getSize() const;
+	int getId() const;
+	int getSize() const;
 	std::vector<int> getForbidden() const;
 	std::vector<int> getFriends() const;
 	std::vector<int> getRivals() const;

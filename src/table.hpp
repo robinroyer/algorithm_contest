@@ -10,8 +10,8 @@ public:
 	~Table();  // This is the destructor: declaration
 
 	void printTable();
-	void addCompany(const Company* company);
-	void removeCompany(const Company* company);
+	bool addCompany( Company* company);
+	void removeCompany( Company* company);
 	// The following method will be applied everytime
 	//a table changes so that a minor modification will only make a minor computation 
 	//and  the program won't have to compute the global weights of all tables

@@ -21,5 +21,24 @@ void Table::printTable() {
 		}
 	}
 	std::cout << std::endl;
-
 }
+
+bool Table::addCompany(Company* company){
+	
+	std::vector<int> forbidTmp = company->getForbidden();
+
+	for (int i = 0; i < forbidTmp.size(); i++)
+	{
+		for (int j = 0; j < companies_.size(); j++)
+		{
+			if (forbidTmp[i] == companies_[j]->getId())
+			{
+				return false;
+			}
+		}
+	}
+
+	companies_.push_back(company);
+	return true;
+}
+
