@@ -3,11 +3,11 @@
 
 // Member functions definitions including constructor
 Table::Table(void) : weight_(0) {
-   std::cout << "Object is being created" << std::endl;
+   std::cout << "Table is being created" << std::endl;
 }
 
 Table::~Table(void) {
-   std::cout << "Object is being deleted" << std::endl;
+   std::cout << "Table is being deleted" << std::endl;
 }
 
 void Table::printTable() {

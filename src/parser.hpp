@@ -2,9 +2,12 @@
 #define H_PARSER
 
 #include <map>
+#include <stdlib.h>
+
 #include "company.hpp"
+#include "table.hpp"
 
 
-std::map<int, Company*> parse(std::string);
+void parse(std::string, std::map<int, Company*> &, std::vector<Table*> &);
 
 #endif

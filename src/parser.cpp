@@ -3,12 +3,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "parser.hpp"
-#include "company.hpp"
 #include <map>
 
-std::map<int, Company*> parse(std::string name){
-	std::cout << "hello from parser 1 : " << name << std::endl;
+#include "parser.hpp"
+#include "company.hpp"
+#include "table.hpp"
+
+void parse(std::string name, std::map<int, Company*> &companies, std::vector<Table*> &tables){
 	
 	int counter = 0;
 
@@ -30,11 +31,17 @@ std::map<int, Company*> parse(std::string name){
 	std::getline(file, str);
 	int tableNumber = std::stoi( str );
 
+    // create all the tables
+    for (int i = 0; i < tableNumber; ++i)
+    {
+        tables.push_back(new Table());
+    }
 
-	// get the number of company
-	std::getline(file, str);
-	int companyNumber = std::stoi( str );
-	std::map<int, Company*> companies;
+    // get the number of company
+    std::getline(file, str);
+    int companyNumber = std::stoi( str );
+
+
 	
     std::cout << "il y a :" << companyNumber << " companies" << std::endl;
 
@@ -100,6 +107,4 @@ std::map<int, Company*> parse(std::string name){
 
     	rivalCounter++;
     }
-
-    return companies;
 }
