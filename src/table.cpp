@@ -42,3 +42,13 @@ bool Table::addCompany(Company* company){
 	return true;
 }
 
+int Table::getWeight(){
+	return weight_;
+}
+
+std::vector<Company*> Table::getCompanies(){
+	return companies_;
+}
+
+
+

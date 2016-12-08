@@ -32,17 +32,16 @@ int main(int argc, char* argv[])
 	std::vector<Company*> vectCompanies;
 	for (auto it = companies.begin(); it != companies.end(); ++it)
 	{
-
 		vectCompanies.push_back(it->second); // accede à la valeur
 	}
+
 	std::sort(vectCompanies.begin(), vectCompanies.end(), FoncteurCompareSizeOfEnnemies());
 	Solution initSol;
 	initSol.setTables(tables);
-	initSol.initSol();
+	initSol.initSol(vectCompanies);
 	initSol.printSolution();
 
 
-	}
 	// PANIC => we should no end as it is a time-contest
 	return EXIT_SUCCESS;
 }

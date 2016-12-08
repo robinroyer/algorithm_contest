@@ -17,8 +17,8 @@ Solution::~Solution() {
 
 void Solution::printSolution() {
 	for (int i = 0; i < tables_.size(); i++) {
-		tables_[i]->printTable();
-		}
+		tables_[i].printTable();
+	}
 	std::cout << "fin";
 	}
 
@@ -27,14 +27,15 @@ void Solution::setTables(std::vector<Table> tables) {
 }
 
 void Solution::initSol(std::vector<Company*> companies) {
-	for (int j = 0; j < companies.size(); j++) {
-		k = 0
-			while (!tables_[k].addCompany(companies[j])) {
-				k++;
-				if (k > tables_.size()) {
-					std::cout << " OH SA MERE";
-				}
-			}
-	}
+	int k;
 
+	for (int j = 0; j < companies.size(); j++) {
+		k = 0;
+		while (!tables_[k].addCompany(companies[j])) {
+			k++;
+			if (k > tables_.size()) {
+				std::cout << " OH SA MERE";
+			}
+		}
+	}
 }

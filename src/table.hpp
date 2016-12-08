@@ -18,6 +18,8 @@ public:
 	// only applies to weight for friends and rivals, can't compute the standard deviation
 	// because that's a local var
 	void computeWeight();
+	int getWeight();
+	std::vector<Company*> getCompanies();
 
 private:
 	std::vector<Company*> companies_;
