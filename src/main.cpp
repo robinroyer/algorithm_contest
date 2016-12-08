@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	// input file
 	std::string fileName = argv[1];
 	// storing all the tables
-	std::vector<Table*> tables;
+	std::vector<Table> tables;
 	// storing all the companies
 	std::map<int, Company*> companies;
 	// parse input file and create companies and tables
@@ -23,14 +23,12 @@ int main(int argc, char* argv[])
 	// tables and companies are now filled !!!
 
 
+
 	// TODO
 	// => WORK HERE
 
 
-	// PANIC => we should no end as it is a time-contest
-	return EXIT_SUCCESS;
-
-// init une solution
+	// init une solution
 	std::vector<Company*> vectCompanies;
 	for (auto it = companies.begin(); it != companies.end(); ++it)
 	{
@@ -39,4 +37,6 @@ int main(int argc, char* argv[])
 	}
 	std::sort(vectCompanies.begin(), vectCompanies.end(), FoncteurCompareSizeOfEnnemies());
 
+	// PANIC => we should no end as it is a time-contest
+	return EXIT_SUCCESS;
 }

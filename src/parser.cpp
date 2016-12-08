@@ -9,7 +9,7 @@
 #include "company.hpp"
 #include "table.hpp"
 
-void parse(std::string name, std::map<int, Company*> &companies, std::vector<Table*> &tables){
+void parse(std::string name, std::map<int, Company*> &companies, std::vector<Table> &tables){
 	
 	int counter = 0;
 
@@ -34,7 +34,7 @@ void parse(std::string name, std::map<int, Company*> &companies, std::vector<Tab
     // create all the tables
     for (int i = 0; i < tableNumber; ++i)
     {
-        tables.push_back(new Table());
+        tables.push_back(Table());
     }
 
     // get the number of company

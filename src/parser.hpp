@@ -8,6 +8,6 @@
 #include "table.hpp"
 
 
-void parse(std::string, std::map<int, Company*> &, std::vector<Table*> &);
+void parse(std::string, std::map<int, Company*> &, std::vector<Table> &);
 
 #endif
