@@ -25,6 +25,7 @@ void Table::printTable() {
 
 bool Table::addCompany(Company* company){
 	
+	// CHECKING IF THE COMPANY CAN SIT AT THE TABLE
 	std::vector<int> forbidTmp = company->getForbidden();
 
 	for (int i = 0; i < forbidTmp.size(); i++)
@@ -32,9 +33,7 @@ bool Table::addCompany(Company* company){
 		for (int j = 0; j < companies_.size(); j++)
 		{
 			if (forbidTmp[i] == companies_[j]->getId())
-			{
 				return false;
-			}
 		}
 	}
 

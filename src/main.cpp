@@ -23,7 +23,6 @@ int main(int argc, char* argv[])
 	// tables and companies are now filled !!!
 
 
-
 	// TODO
 	// => WORK HERE
 

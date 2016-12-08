@@ -34,8 +34,9 @@ void Solution::initSol(std::vector<Company*> companies) {
 		k = 0;
 		while (!tables_[k].addCompany(companies[j])) {
 			k++;
-			if (k > tables_.size()) {
-				std::cout << " OH SA MERE";
+			if (k >= tables_.size()) {
+				std::cout << " ... => Pas de Solution possible pour cette configuration" << std::endl;;
+				break;
 			}
 		}
 	}
@@ -51,8 +52,10 @@ int Solution::computeCostFunction() {
 	}
 
 	float mean = sum / tables_.size();
-	for (int j = 0; j < tables.size(); j++) {
-		standardDeviation+= pow(tables_[j] - mean, 2);
+	for (int j = 0; j < tables_.size(); j++) {
+		standardDeviation+= pow(tables_[j].getCompanies().size() - mean, 2);
 	}
-	return sqrt(standardDeviation / tables_.size());
+	return cost + sqrt(standardDeviation / tables_.size());
 }
+
+
