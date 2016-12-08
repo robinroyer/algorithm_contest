@@ -6,29 +6,26 @@
 
 class Company {
 public:
-	Company(unsigned int id, unsigned int size);   // This is the constructor declaration
+	Company(int id, int size);   // This is the constructor declaration
 	~Company();  // This is the destructor: declaration
 
-	void setFriends(const std::vector<Company*> friends);
-	void setRivals(const std::vector<Company*> rivals);
 	void addRival(int);
 	void addFriend(int);
 	void addForbidden(int);
-	void setForbidden(const std::vector<Company*> forbiddenCompanies);
 	//methode d'accès et de modification des attributs
 	unsigned int getId() const;
 	unsigned int getSize() const;
-	std::vector<Company*> getForbidden() const;
-	std::vector<Company*> getFriends() const;
-	std::vector<Company*> getRivals() const;
+	std::vector<int> getForbidden() const;
+	std::vector<int> getFriends() const;
+	std::vector<int> getRivals() const;
 
 
 private:
 	unsigned int id_;
 	unsigned int size_;
-	std::vector<Company*> friends_;
-	std::vector<Company*> rivals_;
-	std::vector<Company*> forbidden_;
+	std::vector<int> friends_;
+	std::vector<int> rivals_;
+	std::vector<int> forbidden_;
 };
 
 #endif

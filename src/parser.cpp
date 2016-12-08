@@ -10,7 +10,7 @@
 std::map<int, Company*> parse(std::string name){
 	std::cout << "hello from parser 1 : " << name << std::endl;
 	
-	int counter = 1;
+	int counter = 0;
 
 	int forbiddenCounter = 1;
 	int friendCounter = 1;
@@ -39,7 +39,7 @@ std::map<int, Company*> parse(std::string name){
     std::cout << "il y a :" << companyNumber << " companies" << std::endl;
 
 
-    while (counter <= companyNumber)
+    while (counter < companyNumber)
     {
     	std::getline(file, str);
 
@@ -61,7 +61,8 @@ std::map<int, Company*> parse(std::string name){
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " hates  " << id2 << std::endl;
-    	companies[id]->addRival(id2);// not implemented yet
+    	companies[id]->addRival(id2);
+
 
     	forbiddenCounter++;
     }
@@ -78,8 +79,7 @@ std::map<int, Company*> parse(std::string name){
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " loves  " << id2 << std::endl;
-    	companies[id]->addFriend(id2);// not implemented yet
-
+    	companies[id]->addFriend(id2);
 
     	friendCounter++;
     }
@@ -96,9 +96,10 @@ std::map<int, Company*> parse(std::string name){
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " doesn't like  " << id2 << std::endl;
-    	companies[id]->addForbidden(id2);// not implemented yet
+    	companies[id]->addForbidden(id2);
 
     	rivalCounter++;
     }
+
     return companies;
 }
