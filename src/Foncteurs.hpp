@@ -9,7 +9,7 @@
 class FoncteurCompanyOfSameId
 {
 public :
-	FoncteurCompanyOfSameId(unsigned int id) : id_(id)  {}
+	FoncteurCompanyOfSameId(unsigned int id) : id_(id) {}
 	~FoncteurCompanyOfSameId() {}
 
 	bool operator() (const Company* comp) {
@@ -17,6 +17,16 @@ public :
 	}
 private :
 	unsigned int id_;
+};
+
+class FoncteurCompareSizeOfEnnemies
+{
+public :
+	FoncteurCompareSizeOfEnnemies() {}
+	~FoncteurCompareSizeOfEnnemies() {}
+	bool operator () (const Company* company1, const Company* company2) {
+		return company1->getForbidden().size()>company2->getForbidden().size();
+	}
 };
 
 
