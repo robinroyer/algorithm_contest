@@ -15,7 +15,11 @@
 
 #define NUM_THREADS     4
 
-Solution recuit(Solution solution) {
+static void *recuit(Solution * arg ) {
+
+	Solution solution;
+	solution = *arg;
+
 	int iteration = 0;
 	float T = 10.0;
 	float diff = 0.0;
@@ -38,18 +42,22 @@ Solution recuit(Solution solution) {
 
 			diff = solution.computeCostFunction() - post.computeCostFunction();
 			pi = exp(-diff / T);
-			if (diff > 0 && rand() < pi) {
+			//bad solution
+			if (diff > 0 && (rand() % 1000) / 100.0 < 1-pi) {
 				solution = post;
 			}
 			iteration++;
-			T = T*0.99;
+			T = T * 0.99;
 			if (solution.computeCostFunction() < bestCost) {
 				bestSol = solution;
 				bestCost = solution.computeCostFunction();
 				bestSol.printSolution();
+				std::cout << "BESTCOST is : " << bestCost << std::endl;
 			}
+
 		}
 		iteration = 0;
+		T = 10;
 		solution = bestSol;
 	}
 }
@@ -89,15 +97,14 @@ int main(int argc, char* argv[])
 	
 
 	// test
-	recuit(initSol);
-	// TODO multi thread
+	// recuit(initSol);
 
 	// DOCUMENTATION =>
 	// int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
-	// 		void *(*start_routine) (void *), void *arg);
-	// for( int i = 0; i < NUM_THREADS; i++ ){
- //      	pthread_create(&threads[i], NULL, &recuit, (void *)i);	// i is the arg given
-	// }
+			// void *(*start_routine) (void *), void *arg);
+	for( int i = 0; i < NUM_THREADS; i++ ){
+      	pthread_create(&threads[i], NULL, &recuit, &initSol);	// i is the arg given
+	}
 
 
 	// TERMINATE
