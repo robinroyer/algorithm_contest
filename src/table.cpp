@@ -25,6 +25,8 @@ void Table::printTable() {
 
 bool Table::addCompany(Company* company){
 
+	// std::cout << "DEBUG : " << weight_ << std::endl;
+
 	// protection against stupidity
 	if(company == NULL)
 		return false;
@@ -65,12 +67,13 @@ bool Table::addCompany(Company* company){
 		for (int j = 0; j < companies_.size(); j++)
 		{
 			if (rivalsTmp[i] == companies_[j]->getId())
-				weight_++ ; // BAD BAD BAD
+				weight_ += 2 ; // BAD BAD BAD
 		}
 	}
 
 	size_ += company->getSize();
 
+	// std::cout << "DEBUG : " << weight_ << std::endl;
 
 	// WELL DONE
 	return true;

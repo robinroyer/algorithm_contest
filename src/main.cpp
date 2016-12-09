@@ -5,12 +5,16 @@
 #include <algorithm>
 #include <time.h>
 #include <math.h>
+#include <pthread.h>
 
 #include "parser.hpp"
 #include "company.hpp"
 #include "solution.hpp"
 #include "Foncteurs.hpp"
 #include "table.hpp"
+
+#define NUM_THREADS     4
+
 Solution recuit(Solution solution) {
 	int iteration = 0;
 	float T = 10.0;
@@ -51,10 +55,13 @@ Solution recuit(Solution solution) {
 }
 
 
+
 int main(int argc, char* argv[])
 {
-	/* initialize random seed: */
+	// initialize random seed: 
 	srand(time(NULL));
+	// Holding our threads in an array
+	pthread_t threads[NUM_THREADS];
 	// input file
 	std::string fileName = argv[1];
 	// storing all the tables
@@ -82,21 +89,23 @@ int main(int argc, char* argv[])
 	
 
 	// test
+	recuit(initSol);
+	// TODO multi thread
 
-	initSol.stdMove();
-	initSol.stdMove();
-	initSol.stdMove();
-	initSol.stdMove();
-	initSol.stdMove();
-	initSol.stdMove();
-	initSol.stdMove();
-	initSol.stdMove();
-	
-	initSol.printSolution();
+	// DOCUMENTATION =>
+	// int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+	// 		void *(*start_routine) (void *), void *arg);
+	// for( int i = 0; i < NUM_THREADS; i++ ){
+ //      	pthread_create(&threads[i], NULL, &recuit, (void *)i);	// i is the arg given
+	// }
 
 
+	// TERMINATE
 
-	std::cout << "Test: le poid le solution est " << initSol.computeCostFunction() << std::endl; 
+	// for( int j = 0; i < NUM_THREADS; i++ ){
+ //    	pthread_join(threads[i], void **);
+ //   	}
+
 
 	// KERNEL PANIC => we should no end as it is a time-contest
 	return EXIT_SUCCESS;

@@ -7,11 +7,11 @@
 
 // Member functions definitions including constructor
 Solution::Solution() {
-	std::cout << "A solution has been created" << std::endl;
+	// std::cout << "A solution has been created" << std::endl;
 }
 
 Solution::~Solution() {
-	std::cout << "A solution has been deleted" << std::endl;
+	// std::cout << "A solution has been deleted" << std::endl;
 	while (tables_.size() != 0)
 	{
 		tables_.pop_back();
