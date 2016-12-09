@@ -33,17 +33,17 @@ void genetiquerecuit(Solution solution) {
 			int prob = rand() % 2;
 			if (prob == 1) {
 				solution.randomMove();
-				if arret < 1000 {
+				if compteur < 1000 {
 					population.push_back(new Solution(solution));
-					arret += 1;
+					compteur += 1;
 				}
 			}
 
 			else {
 				solution.stdMove();
-				if arret < 1000 {
+				if compteur < 1000 {
 					population.push_back(new Solution(solution));
-					arret += 1;
+					compteur+= 1;
 				}
 			}
 
@@ -78,14 +78,7 @@ void genetiquerecuit(Solution solution) {
 	while (true) {
 		for (int i = 0; i < taillepop; i++) {
 			population.push_back(new Solution(*population[i]));
-			int prob = rand() % 2;
-			if (prob == 1) {
-				population[i]->randomMove();
-			}
-
-			else {
-				population[i]->stdMove();
-			}
+			population[i]->randomMove();
 		}
 
 		std::sort(population.begin(), population.end(), FoncteurCompareCostofSolutions());
