@@ -41,5 +41,14 @@ public:
 	}
 };
 
+class FoncteurCompareCostofSolutions
+{
+public:
+	FoncteurCompareCostofSolutions() {}
+	~FoncteurCompareCostofSolutions() {}
+	bool operator() (Solution* sol1, Solution* sol2) {
+		return sol1->computeCostFunction() > sol2->computeCostFunction();
+	}
+};
 
 #endif;

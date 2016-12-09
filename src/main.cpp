@@ -15,6 +15,85 @@
 
 #define NUM_THREADS     4
 
+static void *genetiquerecuit(Solution * arg) {
+
+	Solution solution;
+	solution = *arg;
+
+	int iteration = 0;
+	float T = 10.0;
+	float diff = 0.0;
+	float pi = 0.0;
+
+	Solution bestSol = solution;
+	float bestCost = solution.computeCostFunction();
+	std::vector<Solution*> population;
+	int arret = 0;
+	while (arret<10) {
+		int fin = 1;
+		while (iteration < 2000) {
+			Solution post = solution;
+			int prob = rand() % 2;
+			if (prob == 1) {
+				solution.randomMove();
+			}
+
+			else {
+				solution.stdMove();
+			}
+
+			diff = solution.computeCostFunction() - post.computeCostFunction();
+			pi = exp(-diff / T);
+			//bad solution
+			if (diff > 0 && (r = ((double)rand() / (RAND_MAX))) / 100.0 < 1 - pi) {
+				solution = post;
+			}
+			iteration++;
+			T = T * 0.99;
+			if (solution.computeCostFunction() < bestCost) {
+				bestSol = solution;
+				bestCost = solution.computeCostFunction();
+				bestSol.printSolution();
+				population.push_back(new Solution(bestSol));
+				std::cout << "BESTCOST is : " << bestCost << std::endl;
+				fin = 1;
+			}
+
+		}
+		arret += fin;
+		if (fin == 0) {
+			arret = 0;
+		}
+		iteration = 0;
+		T = 10;
+		solution = bestSol;
+	}
+	int taillepop = population.size();
+	while (true) {
+		for (int i = 0; i < taillepop; i++) {
+			population.push_back(new Solution(*population[i]));
+			int prob = rand() % 2;
+			if (prob == 1) {
+				population[i]->randomMove();
+			}
+
+			else {
+				population[i]->stdMove();
+			}
+		}
+		std::sort(population.begin(), population.end(), FoncteurCompareCostofSolutions());
+		while (population.size() > taillepop) {
+			population.pop_back();
+		}
+		if (population[0]->computeCostFunction() < bestCost) {
+			bestSol = *population[0];
+			bestCost = population[0]->computeCostFunction();
+			bestSol.printSolution();
+		}
+	}
+
+}
+
 static void *recuit(Solution * arg ) {
 
 	Solution solution;
@@ -27,6 +106,7 @@ static void *recuit(Solution * arg ) {
 
 	Solution bestSol = solution;
 	float bestCost = solution.computeCostFunction();
+
 
 	while (true) {
 		while (iteration < 2000) {
@@ -43,7 +123,7 @@ static void *recuit(Solution * arg ) {
 			diff = solution.computeCostFunction() - post.computeCostFunction();
 			pi = exp(-diff / T);
 			//bad solution
-			if (diff > 0 && (rand() % 1000) / 100.0 < 1-pi) {
+			if (diff > 0 && (r = ((double)rand() / (RAND_MAX))) / 100.0 < 1-pi) {
 				solution = post;
 			}
 			iteration++;
