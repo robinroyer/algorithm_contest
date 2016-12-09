@@ -37,7 +37,35 @@ bool Table::addCompany(Company* company){
 		}
 	}
 
+	// THE COMPANY WILL SIT AT THE TABLE
 	companies_.push_back(company);
+
+	// CHECKING IF THE COMPANY 'S FRIENDS & CHANGE WEIGHT
+	std::vector<int> friendsTmp = company->getFriends();
+
+	for (int i = 0; i < friendsTmp.size(); i++)
+	{
+		for (int j = 0; j < companies_.size(); j++)
+		{
+			if (friendsTmp[i] == companies_[j]->getId())
+				weight_-- ; // GOOD GOOD GOOD
+		}
+	}
+
+
+	// CHECKING IF THE COMPANY 'S RIVALS & CHANGE WEIGHT
+	std::vector<int> rivalsTmp = company->getRivals();
+
+	for (int i = 0; i < rivalsTmp.size(); i++)
+	{
+		for (int j = 0; j < companies_.size(); j++)
+		{
+			if (rivalsTmp[i] == companies_[j]->getId())
+				weight_++ ; // BAD BAD BAD
+		}
+	}
+
+	// WELL DONE
 	return true;
 }
 

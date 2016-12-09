@@ -20,7 +20,7 @@ void Solution::printSolution() {
 	for (int i = 0; i < tables_.size(); i++) {
 		tables_[i].printTable();
 	}
-	std::cout << "fin";
+	std::cout << "fin" << std::endl;;
 	}
 
 void Solution::setTables(std::vector<Table> tables) {

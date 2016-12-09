@@ -40,6 +40,8 @@ int main(int argc, char* argv[])
 	initSol.initSol(vectCompanies);
 	initSol.printSolution();
 
+	// test
+	std::cout << "Test: le poid le solution est " << initSol.computeCostFunction() << std::endl; 
 
 	// PANIC => we should no end as it is a time-contest
 	return EXIT_SUCCESS;
