@@ -1,20 +1,30 @@
 # algorithm_contest
-This is the lab of INF4705 (Polytechnique Montréal) in which we propose a way to win.
+This is the lab of INF4705 (Polytechnique Montréal) in which we propose a way to win.(learning new things is a small victory huh ?)
 
 
 ### Generate data files
+```
 ./gen.sh
+```
 
 ### execute
+```
 ./tp.sh -e [path_vers_exemplaire]
+```
 
+### Compile
+generate exe
+```
+make
+```
 
-### ideas
+generate dataset
+```
+make data
+```
 
-le parser fait un gros travail et on manipule que des pointeurs ensuite
+clean exe, .o et data
+```
+make clean
+```
 
-
-> on veut trouver une 'bonne' solution puis iterer dans les solutions possibles  avec du multi threading en se bassant sur une fonction objectifs
-
-
-> on veut faire un oject compagnie, un objet table, solution (fct print)
