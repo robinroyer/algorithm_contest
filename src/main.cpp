@@ -4,27 +4,49 @@
 #include <map>
 #include <algorithm>
 #include <time.h>
+#include <math.h>
 
 #include "parser.hpp"
 #include "company.hpp"
 #include "solution.hpp"
 #include "Foncteurs.hpp"
 #include "table.hpp"
-void recuit(Solution solution) {
+Solution recuit(Solution solution) {
 	int iteration = 0;
+	float T = 10.0;
+	float diff = 0.0;
+	float pi = 0.0;
 
-	while (iteration <1) {
-		Solution post = solution;
-		int prob = rand() % 2;
-		if (prob == 1) {
-			solution.randomMove();
-		
+	Solution bestSol = solution;
+	float bestCost = solution.computeCostFunction();
+
+	while (true) {
+		while (iteration < 2000) {
+			Solution post = solution;
+			int prob = rand() % 2;
+			if (prob == 1) {
+				solution.randomMove();
+			}
+
+			else {
+				solution.stdMove();
+			}
+
+			diff = solution.computeCostFunction() - post.computeCostFunction();
+			pi = exp(-diff / T);
+			if (diff > 0 && rand() < pi) {
+				solution = post;
+			}
+			iteration++;
+			T = T*0.99;
+			if (solution.computeCostFunction() < bestCost) {
+				bestSol = solution;
+				bestCost = solution.computeCostFunction();
+				bestSol.printSolution();
+			}
 		}
-		else {
-			solution.stdMove()
-		}
-		iteration++;
-		std::cout << solution.computeCostFunction() << " " << solution.computeCostFunction();
+		iteration = 0;
+		solution = bestSol;
 	}
 }
 
