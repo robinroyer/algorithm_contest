@@ -10,6 +10,23 @@
 #include "solution.hpp"
 #include "Foncteurs.hpp"
 #include "table.hpp"
+void recuit(Solution solution) {
+	int iteration = 0;
+
+	while (iteration <1) {
+		Solution post = solution;
+		int prob = rand() % 2;
+		if (prob == 1) {
+			solution.randomMove();
+		
+		}
+		else {
+			solution.stdMove()
+		}
+		iteration++;
+		std::cout << solution.computeCostFunction() << " " << solution.computeCostFunction();
+	}
+}
 
 
 int main(int argc, char* argv[])
@@ -39,6 +56,8 @@ int main(int argc, char* argv[])
 	initSol.setTables(tables);
 	initSol.initSol(vectCompanies);
 	initSol.printSolution();
+
+	
 
 	// test
 	std::cout << "Test: le poid le solution est " << initSol.computeCostFunction() << std::endl; 
