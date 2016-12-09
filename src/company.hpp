@@ -6,8 +6,8 @@
 
 class Company {
 public:
-	Company(int id, int size);   // This is the constructor declaration
-	~Company();  // This is the destructor: declaration
+	Company(int id, int size);
+	~Company();
 
 	void addRival(int);
 	void addFriend(int);
@@ -18,7 +18,6 @@ public:
 	std::vector<int> getForbidden() const;
 	std::vector<int> getFriends() const;
 	std::vector<int> getRivals() const;
-
 
 private:
 	int id_;

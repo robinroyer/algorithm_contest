@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <time.h>
 #include <math.h>
-#include <pthread.h>
+
 
 #include "parser.hpp"
 #include "company.hpp"
@@ -13,12 +13,8 @@
 #include "Foncteurs.hpp"
 #include "table.hpp"
 
-#define NUM_THREADS     4
-
-static void *genetiquerecuit(Solution * arg) {
-
-	Solution solution;
-	solution = *arg;
+//Simulated annealing then genetic algorithm
+void genetiquerecuit(Solution solution) {
 
 	int iteration = 0;
 	float T = 10.0;
@@ -29,7 +25,7 @@ static void *genetiquerecuit(Solution * arg) {
 	float bestCost = solution.computeCostFunction();
 	std::vector<Solution*> population;
 	int arret = 0;
-	while (arret<10) {
+	while (arret < 100) {
 		int fin = 1;
 		while (iteration < 2000) {
 			Solution post = solution;
@@ -45,7 +41,7 @@ static void *genetiquerecuit(Solution * arg) {
 			diff = solution.computeCostFunction() - post.computeCostFunction();
 			pi = exp(-diff / T);
 			//bad solution
-			if (diff > 0 && (r = ((double)rand() / (RAND_MAX))) / 100.0 < 1 - pi) {
+			if (diff > 0 && (((double)rand() / (RAND_MAX))) / 100.0 < 1 - pi) {
 				solution = post;
 			}
 			iteration++;
@@ -55,7 +51,7 @@ static void *genetiquerecuit(Solution * arg) {
 				bestCost = solution.computeCostFunction();
 				bestSol.printSolution();
 				population.push_back(new Solution(bestSol));
-				std::cout << "BESTCOST is : " << bestCost << std::endl;
+				// std::cout << "BESTCOST is : " << bestCost << " computeStandardDeviation "  << bestSol.computeStandardDeviation()<< std::endl;
 				fin = 1;
 			}
 
@@ -68,7 +64,9 @@ static void *genetiquerecuit(Solution * arg) {
 		T = 10;
 		solution = bestSol;
 	}
-	int taillepop = population.size();
+
+	// int taillepop = population.size();
+	int taillepop = 1000;
 	while (true) {
 		for (int i = 0; i < taillepop; i++) {
 			population.push_back(new Solution(*population[i]));
@@ -81,23 +79,24 @@ static void *genetiquerecuit(Solution * arg) {
 				population[i]->stdMove();
 			}
 		}
+
 		std::sort(population.begin(), population.end(), FoncteurCompareCostofSolutions());
 		while (population.size() > taillepop) {
 			population.pop_back();
 		}
+
 		if (population[0]->computeCostFunction() < bestCost) {
 			bestSol = *population[0];
 			bestCost = population[0]->computeCostFunction();
 			bestSol.printSolution();
+			// std::cout << "NEW BESTCOST is : " << bestCost  << " computeStandardDeviation "  << bestSol.computeStandardDeviation()<< std::endl;
+
 		}
 	}
-
 }
 
-static void *recuit(Solution * arg ) {
-
-	Solution solution;
-	solution = *arg;
+//Simulated annealing
+static void recuit(Solution solution ) {
 
 	int iteration = 0;
 	float T = 10.0;
@@ -123,7 +122,7 @@ static void *recuit(Solution * arg ) {
 			diff = solution.computeCostFunction() - post.computeCostFunction();
 			pi = exp(-diff / T);
 			//bad solution
-			if (diff > 0 && (r = ((double)rand() / (RAND_MAX))) / 100.0 < 1-pi) {
+			if (diff > 0 && (((double)rand() / (RAND_MAX))) / 100.0 < 1-pi) {
 				solution = post;
 			}
 			iteration++;
@@ -132,9 +131,8 @@ static void *recuit(Solution * arg ) {
 				bestSol = solution;
 				bestCost = solution.computeCostFunction();
 				bestSol.printSolution();
-				std::cout << "BESTCOST is : " << bestCost << std::endl;
+				// std::cout << "BESTCOST is : " << bestCost << std::endl;
 			}
-
 		}
 		iteration = 0;
 		T = 10;
@@ -143,13 +141,10 @@ static void *recuit(Solution * arg ) {
 }
 
 
-
 int main(int argc, char* argv[])
 {
 	// initialize random seed: 
 	srand(time(NULL));
-	// Holding our threads in an array
-	pthread_t threads[NUM_THREADS];
 	// input file
 	std::string fileName = argv[1];
 	// storing all the tables
@@ -173,26 +168,10 @@ int main(int argc, char* argv[])
 	initSol.setTables(tables);
 	initSol.initSol(vectCompanies);
 	initSol.printSolution();
-
 	
 
-	// test
-	// recuit(initSol);
-
-	// DOCUMENTATION =>
-	// int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
-			// void *(*start_routine) (void *), void *arg);
-	for( int i = 0; i < NUM_THREADS; i++ ){
-      	pthread_create(&threads[i], NULL, &recuit, &initSol);	// i is the arg given
-	}
-
-
-	// TERMINATE
-
-	// for( int j = 0; i < NUM_THREADS; i++ ){
- //    	pthread_join(threads[i], void **);
- //   	}
-
+	// mono thread EVOLUTION => go to multithread
+	genetiquerecuit(initSol);
 
 	// KERNEL PANIC => we should no end as it is a time-contest
 	return EXIT_SUCCESS;

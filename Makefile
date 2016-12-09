@@ -1,5 +1,5 @@
 # Declaration of variables
-CC = g++
+CC = g++ 
 CC_FLAGS = -w
 
 # File names
@@ -10,11 +10,11 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 # Main target
 $(EXEC): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(EXEC)
+	@$(CC) $(OBJECTS) -o $(EXEC) -O6
 
 # To obtain object files
 %.o: %.cpp
-	$(CC) -c $(CC_FLAGS) $< -o $@
+	@$(CC) -c $(CC_FLAGS) $< -o $@
 
 # To remove generated files
 clean:

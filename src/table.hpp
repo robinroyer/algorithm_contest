@@ -6,8 +6,8 @@
 
 class Table {
 public:
-	Table();   // This is the constructor declaration
-	~Table();  // This is the destructor: declaration
+	Table();
+	~Table();
 
 	void printTable();
 	bool addCompany( Company* company);

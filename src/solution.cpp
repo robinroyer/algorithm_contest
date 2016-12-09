@@ -5,13 +5,9 @@
 #include "solution.hpp"
 #include "Foncteurs.hpp"
 
-// Member functions definitions including constructor
-Solution::Solution() {
-	// std::cout << "A solution has been created" << std::endl;
-}
+Solution::Solution() {}
 
 Solution::~Solution() {
-	// std::cout << "A solution has been deleted" << std::endl;
 	while (tables_.size() != 0)
 	{
 		tables_.pop_back();
@@ -37,7 +33,7 @@ void Solution::initSol(std::vector<Company*> companies) {
 		while (!tables_[k].addCompany(companies[j])) {
 			k++;
 			if (k >= tables_.size()) {
-				std::cout << " ... => Pas de Solution possible pour cette configuration" << std::endl;;
+				// std::cout << " ... => Pas de Solution possible pour cette configuration" << std::endl;;
 				break;
 			}
 		}
@@ -81,7 +77,6 @@ void Solution::randomMove() {
 	while (!tables_[id2].addCompany(comp)) {
 		id2 = rand() % tables_.size();
 	}
-
 }
 
 
@@ -101,6 +96,4 @@ void Solution::stdMove() {
 	while (!tables_[k].addCompany(comp)) {
 		k++;
 	}
-
-
 }

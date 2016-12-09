@@ -6,8 +6,8 @@
 
 class Solution {
 public:
-	Solution();   // This is the constructor declaration
-	~Solution();  // This is the destructor: declaration
+	Solution();
+	~Solution();
 	void printSolution();
 	void setTables(std::vector<Table> tables);
 	void initSol(std::vector<Company*> companies);
