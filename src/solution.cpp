@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cmath>
+#include <algorithm>
+
 #include "solution.hpp"
+#include "Foncteurs.hpp"
 
 // Member functions definitions including constructor
 Solution::Solution() {
@@ -54,12 +57,12 @@ float Solution::computeStandardDeviation() {
 	float sum = 0.0;
 	float standardDeviation = 0.0;
 	for (int i = 0; i < tables_.size(); i++) {
-		sum += tables_[i].getCompanies().size();
+		sum += tables_[i].getSize();
 	}
 
 	float mean = sum / tables_.size();
 	for (int j = 0; j < tables_.size(); j++) {
-		standardDeviation += pow(tables_[j].getCompanies().size() - mean, 2);
+		standardDeviation += pow(tables_[j].getSize() - mean, 2);
 	}
 	return sqrt(standardDeviation / tables_.size());
 }
@@ -82,4 +85,22 @@ void Solution::randomMove() {
 }
 
 
-//Tale a random Company and put it 
+//Take a random Company and put it in the table with the less people that can accept him
+void Solution::stdMove() {
+	std::sort(tables_.begin(), tables_.end(), FoncteurCompareSizeOfTables());
+	int id1 = rand() % tables_.size();
+
+	while (tables_[id1].getCompanies().size() == 0) {
+		id1 = rand() % tables_.size();
+	}
+
+	int companyid = rand() % tables_[id1].getCompanies().size();
+	Company* comp = tables_[id1].removeCompany(tables_[id1].getCompanies()[companyid]->getId());
+	
+	int k = 0;
+	while (!tables_[k].addCompany(comp)) {
+		k++;
+	}
+
+
+}

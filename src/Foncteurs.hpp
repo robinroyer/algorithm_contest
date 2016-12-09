@@ -29,7 +29,14 @@ public :
 	}
 };
 
-
+class FoncteurCompareSizeOfTables
+{
+	FoncteurCompareSizeOfTables() {}
+	~FoncteurCompareSizeOfTables() {}
+	bool operator() (const Table table1, const Table table2) {
+		return table1.getSize() < table2.getSize();
+	}
+};
 
 
 #endif;
