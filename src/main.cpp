@@ -13,7 +13,10 @@
 #include "Foncteurs.hpp"
 #include "table.hpp"
 
-//Simulated annealing then genetic algorithm
+
+/**
+ * Simulated annealing then genetic algorithm
+ */
 void genetiquerecuit(Solution solution) {
 
 	int iteration = 0;
@@ -36,7 +39,6 @@ void genetiquerecuit(Solution solution) {
 
 			else {
 				solution.stdMove();
-				}
 			}
 
 			diff = solution.computeCostFunction() - post.computeCostFunction();
@@ -52,7 +54,6 @@ void genetiquerecuit(Solution solution) {
 				bestCost = solution.computeCostFunction();
 				population.push_back(new Solution(bestSol));
 				bestSol.printSolution();
-				// std::cout << "BESTCOST is : " << bestCost << " computeStandardDeviation "  << bestSol.computeStandardDeviation()<< std::endl;
 				fin = 1;
 			}
 
@@ -83,13 +84,16 @@ void genetiquerecuit(Solution solution) {
 			bestSol = *population[0];
 			bestCost = population[0]->computeCostFunction();
 			bestSol.printSolution();
-			// std::cout << "NEW BESTCOST is : " << bestCost  << " computeStandardDeviation "  << bestSol.computeStandardDeviation()<< std::endl;
+			std::cout << "NEW BESTCOST is : " << bestCost  << " computeStandardDeviation "  << bestSol.computeStandardDeviation()<< std::endl;
 
 		}
 	}
 }
 
-//Simulated annealing
+
+/**
+ * Simulated annealing
+ */
 static void recuit(Solution solution ) {
 
 	int iteration = 0;
@@ -135,6 +139,9 @@ static void recuit(Solution solution ) {
 }
 
 
+/**
+ *  Coordinating application
+ */
 int main(int argc, char* argv[])
 {
 	// initialize random seed: 
@@ -146,27 +153,21 @@ int main(int argc, char* argv[])
 	// storing all the companies
 	std::map<int, Company*> companies;
 	// parse input file and create companies and tables
-	parse(fileName, companies, tables);
-	// tables and companies are now filled !!!
+	parse(fileName, companies, tables); // => tables and companies are now filled !!!
 
-
-	// init une solution
+	// init a solution
 	std::vector<Company*> vectCompanies;
 	for (auto it = companies.begin(); it != companies.end(); ++it)
-	{
 		vectCompanies.push_back(it->second); // accede à la valeur
-	}
-
+	
 	std::sort(vectCompanies.begin(), vectCompanies.end(), FoncteurCompareSizeOfEnnemies());
 	Solution initSol;
 	initSol.setTables(tables);
 	initSol.initSol(vectCompanies);
 	initSol.printSolution();
 	
-
 	// mono thread EVOLUTION => go to multithread
 	genetiquerecuit(initSol);
 
-	// KERNEL PANIC => we should no end as it is a time-contest
 	return EXIT_SUCCESS;
 }

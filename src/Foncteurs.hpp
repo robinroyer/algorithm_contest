@@ -1,25 +1,15 @@
 #ifndef  FRONTEUR
 #define  FRONTEUR
 
+#include <stdlib.h>
+
 #include "table.hpp"
 #include "company.hpp"
 
-#include <stdlib.h>
 
-//Foncteur permettant de comparer les id de deux companys, à utiliser sur une table avec find_if pour savoir s'il contient la company)
-class FoncteurCompanyOfSameId
-{
-public :
-	FoncteurCompanyOfSameId(int id) : id_(id) {}
-	~FoncteurCompanyOfSameId() {}
-
-	bool operator() ( Company* comp) {
-		return comp->getId() == id_;
-	}
-private :
-	int id_;
-};
-
+/**
+ * Foncteur comparing size of forbidden companies
+ */
 class FoncteurCompareSizeOfEnnemies
 {
 public :
@@ -30,7 +20,9 @@ public :
 	}
 };
 
-
+/**
+ * Foncteur comparing size of table
+ */
 class FoncteurCompareSizeOfTables
 {
 public:
@@ -41,6 +33,9 @@ public:
 	}
 };
 
+/**
+ * Foncteur comparing solution based on a cost solution
+ */
 class FoncteurCompareCostofSolutions
 {
 public:

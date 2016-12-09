@@ -14,6 +14,9 @@ Solution::~Solution() {
 	}
 }
 
+/**
+ * Display the solution
+ */
 void Solution::printSolution() {
 	for (int i = 0; i < tables_.size(); i++) {
 		tables_[i].printTable();
@@ -21,10 +24,17 @@ void Solution::printSolution() {
 	std::cout << "fin" << std::endl;;
 }
 
+/**
+ * tables_ setter
+ */
 void Solution::setTables(std::vector<Table> tables) {
 	tables_ = tables;
 }
 
+
+/**
+ * Initialize solution with a dummy solution in order to iterate over it
+ */
 void Solution::initSol(std::vector<Company*> companies) {
 	int k;
 
@@ -40,15 +50,19 @@ void Solution::initSol(std::vector<Company*> companies) {
 	}
 }
 
+/**
+ * Add table weight to deviation
+ */
 float Solution::computeCostFunction() {
 	float cost = 0.0;
-	for (int i = 0; i < tables_.size(); i++) {
+	for (int i = 0; i < tables_.size(); i++)
 		cost += tables_[i].getWeight();
-	}
-
 	return cost + this->computeStandardDeviation();
 }
 
+/**
+ * calculate table deviation
+ */
 float Solution::computeStandardDeviation() {
 	float sum = 0.0;
 	float standardDeviation = 0.0;
@@ -63,7 +77,9 @@ float Solution::computeStandardDeviation() {
 	return sqrt(standardDeviation / tables_.size());
 }
 
-// Take a random Company and put it in a random Table
+/**
+ * Take a random Company and put it in a random Table
+ */
 void Solution::randomMove() {
 	int id1 = rand() % tables_.size();
 
@@ -79,8 +95,9 @@ void Solution::randomMove() {
 	}
 }
 
-
-//Take a random Company and put it in the table with the less people that can accept him
+/**
+ * Take a random Company and put it in the table with the less people that can accept him
+ */
 void Solution::stdMove() {
 	std::sort(tables_.begin(), tables_.end(), FoncteurCompareSizeOfTables());
 	int id1 = rand() % tables_.size();

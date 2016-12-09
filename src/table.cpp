@@ -1,15 +1,15 @@
 #include <iostream>
+
 #include "table.hpp"
 
-// Member functions definitions including constructor
-Table::Table(void) : weight_(0), size_(0) {
-   // std::cout << "Table is being created" << std::endl;
-}
 
-Table::~Table(void) {
-   // std::cout << "Table is being deleted" << std::endl;
-}
+Table::Table(void) : weight_(0), size_(0) {}
 
+Table::~Table(void) {}
+
+/**
+ * A table should be able to print itself
+ */
 void Table::printTable() {
 	for (int j = 0; j < companies_.size(); j++)
 	{
@@ -23,6 +23,11 @@ void Table::printTable() {
 	std::cout << std::endl;
 }
 
+/**
+ * add a company from its pointer
+ *    => compute the new weight
+ *	  => compute the new number of person at the table
+ */
 bool Table::addCompany(Company* company){
 
 	// protection against stupidity
@@ -74,6 +79,12 @@ bool Table::addCompany(Company* company){
 	return true;
 }
 
+
+/**
+ * Remove a company from it id
+ *    => compute the new weight
+ *	  => compute the new number of person at the table
+ */
 Company* Table::removeCompany( int id){
 
 	Company * companyRemoved = NULL;
@@ -111,28 +122,30 @@ Company* Table::removeCompany( int id){
 					weight_--; // GOOD GOOD GOOD
 			}
 		}
-
 		// REMOVE PEOPLE FROM TABLE
 		size_ -= companyRemoved->getSize();
 	}
-
-
 	return companyRemoved; // NULL is not deleted
 }
 
-
+/**
+ * weight getter
+ */
 int Table::getWeight(){
 	return weight_;
 }
 
+/**
+ * size_ getter
+ */
 int Table::getSize(){
 	return size_;
 }
 
-
+/**
+ * companies getter
+ */
 std::vector<Company*> Table::getCompanies(){
 	return companies_;
 }
-
-
 

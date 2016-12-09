@@ -9,6 +9,10 @@
 #include "company.hpp"
 #include "table.hpp"
 
+
+/**
+ * parse a file from its name and populate companies and tables
+ */
 void parse(std::string name, std::map<int, Company*> &companies, std::vector<Table> &tables){
 	
 	int counter = 0;

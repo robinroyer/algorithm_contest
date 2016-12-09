@@ -1,8 +1,9 @@
 #ifndef H_TABLE
 #define H_TABLE
 
-#include "company.hpp"
 #include <vector>
+
+#include "company.hpp"
 
 class Table {
 public:
