@@ -42,20 +42,43 @@ void Solution::initSol(std::vector<Company*> companies) {
 	}
 }
 
-int Solution::computeCostFunction() {
+float Solution::computeCostFunction() {
 	float cost = 0.0;
+	for (int i = 0; i < tables_.size(); i++) {
+		cost += tables_[i].getWeight();
+	}
+
+	return cost + this->computeStandardDeviation();
+}
+
+float Solution::computeStandardDeviation() {
 	float sum = 0.0;
 	float standardDeviation = 0.0;
 	for (int i = 0; i < tables_.size(); i++) {
-		cost += tables_[i].getWeight();
 		sum += tables_[i].getCompanies().size();
 	}
 
 	float mean = sum / tables_.size();
 	for (int j = 0; j < tables_.size(); j++) {
-		standardDeviation+= pow(tables_[j].getCompanies().size() - mean, 2);
+		standardDeviation += pow(tables_[j].getCompanies().size() - mean, 2);
 	}
-	return cost + sqrt(standardDeviation / tables_.size());
+	return sqrt(standardDeviation / tables_.size());
+}
+
+// Take a random Company and put it in a random Table
+void Solution::randomMove() {
+	int id1 = rand() % tables_size();
+	while (tables_[id1].size() == 0) {
+		id1 = rand() % tables_size();
+	}
+	int companyid= rand() % tables_[id1].getCompanies().size();
+	Company* comp = tables_[id1].removeCompany(tables_[id1].getCompanies()[companyid]->getId());
+	int id2 = rand() % tables_size();
+	while (!tables_[id2].addCompany(comp)) {
+		id2 = rand() % tables_size();
+	}
+
 }
 
 
+//Tale a random Company and put it 

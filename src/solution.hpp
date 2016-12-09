@@ -11,8 +11,10 @@ public:
 	void printSolution();
 	void setTables(std::vector<Table> tables);
 	void initSol(std::vector<Company*> companies);
+	void randomMove(Company* company);
 
-	int computeCostFunction();
+	float computeCostFunction();
+	float computeStandardDeviation();
 
 private:
 	std::vector<Table> tables_;

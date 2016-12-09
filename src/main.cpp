@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 #include <algorithm>
+#include <time.h>
 
 #include "parser.hpp"
 #include "company.hpp"
@@ -10,8 +11,11 @@
 #include "Foncteurs.hpp"
 #include "table.hpp"
 
+
 int main(int argc, char* argv[])
 {
+	/* initialize random seed: */
+	srand(time(NULL));
 	// input file
 	std::string fileName = argv[1];
 	// storing all the tables
