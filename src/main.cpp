@@ -20,7 +20,6 @@ void genetiquerecuit(Solution solution) {
 	float T = 10.0;
 	float diff = 0.0;
 	float pi = 0.0;
-	int compteur = 0;
 
 	Solution bestSol = solution;
 	float bestCost = solution.computeCostFunction();
@@ -33,17 +32,10 @@ void genetiquerecuit(Solution solution) {
 			int prob = rand() % 2;
 			if (prob == 1) {
 				solution.randomMove();
-				if compteur < 1000 {
-					population.push_back(new Solution(solution));
-					compteur += 1;
-				}
 			}
 
 			else {
 				solution.stdMove();
-				if compteur < 1000 {
-					population.push_back(new Solution(solution));
-					compteur+= 1;
 				}
 			}
 
@@ -58,7 +50,8 @@ void genetiquerecuit(Solution solution) {
 			if (solution.computeCostFunction() < bestCost) {
 				bestSol = solution;
 				bestCost = solution.computeCostFunction();
-				bestSol.printSolution()
+				population.push_back(new Solution(bestSol));
+				bestSol.printSolution();
 				// std::cout << "BESTCOST is : " << bestCost << " computeStandardDeviation "  << bestSol.computeStandardDeviation()<< std::endl;
 				fin = 1;
 			}
