@@ -15,13 +15,12 @@ Solution::~Solution() {
 	}
 }
 
-
 void Solution::printSolution() {
 	for (int i = 0; i < tables_.size(); i++) {
 		tables_[i].printTable();
 	}
 	std::cout << "fin" << std::endl;;
-	}
+}
 
 void Solution::setTables(std::vector<Table> tables) {
 	tables_ = tables;
@@ -67,15 +66,17 @@ float Solution::computeStandardDeviation() {
 
 // Take a random Company and put it in a random Table
 void Solution::randomMove() {
-	int id1 = rand() % tables_size();
-	while (tables_[id1].size() == 0) {
-		id1 = rand() % tables_size();
+	int id1 = rand() % tables_.size();
+
+	while (tables_[id1].getCompanies().size() == 0) {
+		id1 = rand() % tables_.size();
 	}
+
 	int companyid= rand() % tables_[id1].getCompanies().size();
 	Company* comp = tables_[id1].removeCompany(tables_[id1].getCompanies()[companyid]->getId());
-	int id2 = rand() % tables_size();
+	int id2 = rand() % tables_.size();
 	while (!tables_[id2].addCompany(comp)) {
-		id2 = rand() % tables_size();
+		id2 = rand() % tables_.size();
 	}
 
 }
