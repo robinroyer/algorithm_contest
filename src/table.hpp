@@ -11,12 +11,7 @@ public:
 
 	void printTable();
 	bool addCompany( Company* company);
-	void removeCompany( Company* company);
-	// The following method will be applied everytime
-	//a table changes so that a minor modification will only make a minor computation 
-	//and  the program won't have to compute the global weights of all tables
-	// only applies to weight for friends and rivals, can't compute the standard deviation
-	// because that's a local var
+	Company* removeCompany( int id);
 	void computeWeight();
 	int getWeight();
 	std::vector<Company*> getCompanies();

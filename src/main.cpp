@@ -23,10 +23,6 @@ int main(int argc, char* argv[])
 	// tables and companies are now filled !!!
 
 
-	// TODO
-	// => WORK HERE
-
-
 	// init une solution
 	std::vector<Company*> vectCompanies;
 	for (auto it = companies.begin(); it != companies.end(); ++it)

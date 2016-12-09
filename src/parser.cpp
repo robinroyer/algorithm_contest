@@ -87,7 +87,8 @@ void parse(std::string name, std::map<int, Company*> &companies, std::vector<Tab
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " loves  " << id2 << std::endl;
-    	companies[id]->addFriend(id2);
+        companies[id]->addFriend(id2);
+    	companies[id2]->addFriend(id); // symetric
 
     	friendCounter++;
     }
@@ -104,7 +105,8 @@ void parse(std::string name, std::map<int, Company*> &companies, std::vector<Tab
     	id2 = std::stoi(str.substr(str.find(" "), str.size()));
 
     	std::cout << id << " doesn't like  " << id2 << std::endl;
-    	companies[id]->addRival(id2);
+        companies[id]->addRival(id2);
+    	companies[id2]->addRival(id); // symetric
 
     	rivalCounter++;
     }
