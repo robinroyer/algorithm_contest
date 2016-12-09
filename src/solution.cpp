@@ -43,7 +43,7 @@ void Solution::initSol(std::vector<Company*> companies) {
 		while (!tables_[k].addCompany(companies[j])) {
 			k++;
 			if (k >= tables_.size()) {
-				// std::cout << " ... => Pas de Solution possible pour cette configuration" << std::endl;;
+				// No solution allowed
 				break;
 			}
 		}

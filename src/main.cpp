@@ -84,8 +84,6 @@ void genetiquerecuit(Solution solution) {
 			bestSol = *population[0];
 			bestCost = population[0]->computeCostFunction();
 			bestSol.printSolution();
-			std::cout << "NEW BESTCOST is : " << bestCost  << " computeStandardDeviation "  << bestSol.computeStandardDeviation()<< std::endl;
-
 		}
 	}
 }
