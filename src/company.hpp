@@ -21,8 +21,8 @@ public:
 
 
 private:
-	unsigned int id_;
-	unsigned int size_;
+	int id_;
+	int size_;
 	std::vector<int> friends_;
 	std::vector<int> rivals_;
 	std::vector<int> forbidden_;

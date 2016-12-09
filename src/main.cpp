@@ -82,8 +82,22 @@ int main(int argc, char* argv[])
 	
 
 	// test
+
+	initSol.stdMove();
+	initSol.stdMove();
+	initSol.stdMove();
+	initSol.stdMove();
+	initSol.stdMove();
+	initSol.stdMove();
+	initSol.stdMove();
+	initSol.stdMove();
+	
+	initSol.printSolution();
+
+
+
 	std::cout << "Test: le poid le solution est " << initSol.computeCostFunction() << std::endl; 
 
-	// PANIC => we should no end as it is a time-contest
+	// KERNEL PANIC => we should no end as it is a time-contest
 	return EXIT_SUCCESS;
 }

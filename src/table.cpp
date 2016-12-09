@@ -2,12 +2,12 @@
 #include "table.hpp"
 
 // Member functions definitions including constructor
-Table::Table(void) : weight_(0) {
-   std::cout << "Table is being created" << std::endl;
+Table::Table(void) : weight_(0), size_(0) {
+   // std::cout << "Table is being created" << std::endl;
 }
 
 Table::~Table(void) {
-   std::cout << "Table is being deleted" << std::endl;
+   // std::cout << "Table is being deleted" << std::endl;
 }
 
 void Table::printTable() {
@@ -41,7 +41,7 @@ bool Table::addCompany(Company* company){
 		}
 	}
 
-	// THE COMPANY WILL SIT AT THE TABLE
+	// THE COMPANY WILL SIT AT THE TABLE !!
 	companies_.push_back(company);
 
 	// CHECKING IF THE COMPANY 'S FRIENDS & CHANGE WEIGHT
@@ -52,7 +52,7 @@ bool Table::addCompany(Company* company){
 		for (int j = 0; j < companies_.size(); j++)
 		{
 			if (friendsTmp[i] == companies_[j]->getId())
-				weight_-- ; // GOOD GOOD GOOD
+				weight_ -= 2 ; // GOOD GOOD GOOD
 		}
 	}
 
@@ -68,6 +68,9 @@ bool Table::addCompany(Company* company){
 				weight_++ ; // BAD BAD BAD
 		}
 	}
+
+	size_ += company->getSize();
+
 
 	// WELL DONE
 	return true;
@@ -95,10 +98,9 @@ Company* Table::removeCompany( int id){
 			for (int j = 0; j < companies_.size(); j++)
 			{
 				if (friendsTmp[i] == companies_[j]->getId())
-					weight_++ ; // BAD BAD BAD
+					weight_ += 2 ; // BAD BAD BAD
 			}
 		}
-
 
 		// CHECKING IF THE COMPANY 'S RIVALS & CHANGE WEIGHT
 		std::vector<int> rivalsTmp = companyRemoved->getRivals();
@@ -108,10 +110,14 @@ Company* Table::removeCompany( int id){
 			for (int j = 0; j < companies_.size(); j++)
 			{
 				if (rivalsTmp[i] == companies_[j]->getId())
-					weight_-- ; // GOOD GOOD GOOD
+					weight_-= 2 ; // GOOD GOOD GOOD
 			}
 		}
+
+		// REMOVE PEOPLE FROM TABLE
+		size_ -= companyRemoved->getSize();
 	}
+
 
 	return companyRemoved; // NULL is not deleted
 }
@@ -120,6 +126,11 @@ Company* Table::removeCompany( int id){
 int Table::getWeight(){
 	return weight_;
 }
+
+int Table::getSize(){
+	return size_;
+}
+
 
 std::vector<Company*> Table::getCompanies(){
 	return companies_;

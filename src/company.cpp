@@ -3,11 +3,11 @@
 
 // Member functions definitions including constructor
 Company::Company( int id, int size) : id_(id),size_(size) {
-	std::cout << "company: " << id << " a " << size << " personnes"<< std::endl;
+	// std::cout << "company: " << id << " a " << size << " personnes"<< std::endl;
 }
 
 Company::~Company() {
-   std::cout << "Object is being deleted" << std::endl;
+   // std::cout << "Object is being deleted" << std::endl;
    while (friends_.size() != 0)
    {
 	   friends_.pop_back();
@@ -23,11 +23,11 @@ Company::~Company() {
    }
 }
 
-unsigned int Company::getId() const {
+int Company::getId() const {
 	return id_;
 }
 
-unsigned int Company::getSize() const {
+int Company::getSize() const {
 	return size_;
 }
 

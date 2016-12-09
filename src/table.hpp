@@ -14,6 +14,7 @@ public:
 	Company* removeCompany( int id);
 	void computeWeight();
 	int getWeight();
+	int getSize();
 	std::vector<Company*> getCompanies();
 
 private:
