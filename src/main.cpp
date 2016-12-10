@@ -54,7 +54,7 @@ void genetiquerecuit(Solution solution) {
 				bestCost = solution.computeCostFunction();
 				population.push_back(new Solution(bestSol));
 				bestSol.printSolution();
-				fin = 1;
+				fin = 0;
 			}
 
 		}
